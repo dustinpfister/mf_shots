@@ -1,11 +1,12 @@
 
+// player
 var player = _.a({
         x : 160,
         y : 120
     }),
 
+// events
 keys = [];
-
 window.onkeydown = function (e) {
 
     console.log(e.keyCode)
@@ -13,17 +14,20 @@ window.onkeydown = function (e) {
     keys[e.keyCode] = true;
 
 };
-
 window.onkeyup = function (e) {
 
     keys[e.keyCode] = false;
 
 };
 
+// single enemy
+
 _.a({
-    x : 5,
-    y : 5,
-    n : 'e'
+    x : 50,
+    y : 50,
+    n : 'e',
+    b : 2,
+    a : Math.PI * 2 * Math.random()
 });
 
 (function () {
@@ -59,8 +63,6 @@ _.a({
                 ctx.fillStyle = '#ffffff';
 
             }
-
-            //ctx.fillRect(u.x, u.y, u.s, u.s);
 
             ctx.beginPath();
             ctx.arc(u.x, u.y, u.s, 0, 6.29);
@@ -106,14 +108,14 @@ _.a({
         //a
         if (keys[65]) {
 
-            player.a += Math.PI / 50;
+            player.a += Math.PI / 180;
 
         }
 
         //d
         if (keys[68]) {
 
-            player.a -= Math.PI / 50;
+            player.a -= Math.PI / 180;
 
         }
 
@@ -122,6 +124,34 @@ _.a({
             player.shoot();
 
         }
+
+        _.s.u.forEach(function (u) {
+
+            if (u.x > canvas.width) {
+
+                u.x = u.x % canvas.width;
+
+            }
+
+            if (u.x < 0) {
+
+                u.x = canvas.width + u.x;
+
+            }
+
+            if (u.y > canvas.height) {
+
+                u.y = u.y % canvas.height;
+
+            }
+
+            if (u.y < 0) {
+
+                u.y = canvas.height + u.y;
+
+            }
+
+        });
 
         cls();
         draw();

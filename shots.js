@@ -85,6 +85,21 @@ var _ = (function () {
 
                 if (u.l != undefined) {
 
+                    un.forEach(function (cu) {
+
+                        if (u.c(cu)) {
+
+                            if (cu.i && cu.n != u.n) {
+								
+								
+                                console.log('yeah');
+
+                            }
+
+                        }
+
+                    });
+
                     u.l -= 1;
 
                 }
@@ -122,6 +137,19 @@ var _ = (function () {
 
     };
 
+    // distance collision detection
+    U.prototype.c = function (u) {
+
+        if (a.d(this.x, this.y, u.x, u.y) < u.s) {
+
+            return true;
+
+        }
+
+        return false;
+
+    };
+
     // shot inherits from Unit
     S.prototype = new U();
 
@@ -139,6 +167,7 @@ var _ = (function () {
                     x : this.x,
                     y : this.y,
                     a : this.a,
+					s: 3,
                     b : 2
 
                 });
