@@ -27,7 +27,8 @@ var _ = (function () {
 
         U.call(this, o);
 
-        this.l = o.l || 50; // life span
+        this.l = o.l || 100; // life span
+        this.dam = 1; // damage
 
     },
 
@@ -38,7 +39,7 @@ var _ = (function () {
 
         this.lf = new Date();
         this.fr = 200;
-        this.H = 100; // max HP
+        this.H = 1; // max HP
         this.i = this.H; // HP
 
     };
@@ -83,16 +84,22 @@ var _ = (function () {
                 u.x += Math.cos(u.a) * u.b;
                 u.y += Math.sin(u.a) * u.b;
 
+                // if lifespan (l) then we have a shot unit
                 if (u.l != undefined) {
 
+                    // check all units to see if we hit something
                     un.forEach(function (cu) {
 
                         if (u.c(cu)) {
 
+                            // if unit has hp (i) and the owner (n) does not belong to the shot
                             if (cu.i && cu.n != u.n) {
-								
-								
-                                console.log('yeah');
+
+                                // apply damage
+                                cu.i -= u.dam;
+
+                                // shot is now spent
+                                u.l = 0;
 
                             }
 
@@ -100,6 +107,7 @@ var _ = (function () {
 
                     });
 
+                    // shot looses 1 lifespan point per tick
                     u.l -= 1;
 
                 }
@@ -111,7 +119,7 @@ var _ = (function () {
             while (i--) {
 
                 // if lifespan is out
-                if (un[i].l <= 0) {
+                if (un[i].l <= 0 || un[i].i <=0 ) {
 
                     un.splice(i, 1);
 
@@ -167,8 +175,8 @@ var _ = (function () {
                     x : this.x,
                     y : this.y,
                     a : this.a,
-					s: 3,
-                    b : 2
+                    s : 3,
+                    b : 3
 
                 });
 
