@@ -61,4 +61,4 @@ loop();
 
 ```
 
-Here I am creating a player vessel and setting up just a simple game loop that logs to the console the position of the first shot that goes off when shooting by pressing the &#186; key.
+Here I am creating a player vessel and setting up just a simple game loop that logs to the console the position of the first shot that goes off when shooting by pressing the ; key.
