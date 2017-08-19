@@ -27,7 +27,7 @@ var _ = (function () {
 
         U.call(this, o);
 
-        this.l = o.l || 10; // life span
+        this.l = o.l || 50; // life span
 
     },
 
@@ -75,11 +75,9 @@ var _ = (function () {
         // update all units
         u : function () {
 
-            this.s.u.forEach(function (u) {
+            var un = this.s.u;
 
-                // move by current deltas
-                //u.x += u.a;
-                //u.y += u.b;
+            un.forEach(function (u) {
 
                 // move by heading and speed
                 u.x += Math.cos(u.a) * u.b;
@@ -92,6 +90,19 @@ var _ = (function () {
                 }
 
             });
+
+            // purge dead units
+            var i = un.length;
+            while (i--) {
+
+                // if lifespan is out
+                if (un[i].l <= 0) {
+
+                    un.splice(i, 1);
+
+                }
+
+            }
 
         }
 
