@@ -9,7 +9,7 @@ var player = _.a({
 keys = [];
 window.onkeydown = function (e) {
 
-    console.log(e.keyCode)
+    console.log(e.keyCode);
 
     keys[e.keyCode] = true;
 
@@ -21,6 +21,23 @@ window.onkeyup = function (e) {
 };
 
 // single enemy
+var countE = function () {
+
+    var ct = 0;
+
+    _.s.u.forEach(function (u) {
+
+        if (u.n === 'e' && u.i > 0) {
+
+            ct += 1;
+
+        }
+
+    });
+
+    return ct;
+
+};
 
 _.a({
     x : 50,
@@ -91,6 +108,20 @@ _.a({
         // update
         _.u();
 
+        console.log(countE());
+
+        if (countE() === 0) {
+
+            _.a({
+                x : 50,
+                y : 50,
+                n : 'e',
+                b : 2,
+                a : Math.PI * 2 * Math.random()
+            });
+
+        }
+
         // w
         if (keys[87]) {
 
@@ -119,7 +150,7 @@ _.a({
 
         }
 
-        if (keys[32]) {
+        if (keys[186]) {
 
             player.shoot();
 
