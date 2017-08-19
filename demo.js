@@ -60,7 +60,11 @@ _.a({
 
             }
 
-            ctx.fillRect(u.x, u.y, u.w, u.h);
+            //ctx.fillRect(u.x, u.y, u.s, u.s);
+
+            ctx.beginPath();
+            ctx.arc(u.x, u.y, u.s, 0, 6.29);
+            ctx.fill();
 
         });
 

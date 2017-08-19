@@ -17,8 +17,8 @@ var _ = (function () {
         this.a = o.a || 0; // heading
         this.b = o.b || 0; // speed
 
-        this.w = o.w || 8; // width
-        this.h = o.h || 8; // height
+        this.s = o.s || 8; // width
+        //this.h = o.h || 8; // height
 
     },
 
