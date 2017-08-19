@@ -6,7 +6,7 @@ var _ = (function () {
     var U = function (o) {
 
         o = o || {};
-		
+
         this.n = o.n || 'p'; // n if for owner
         this.x = o.x || 0; // x pos
         this.y = o.y || 0; // y pos
@@ -36,6 +36,8 @@ var _ = (function () {
 
         U.call(this, o);
 
+        this.lf = new Date();
+        this.fr = 200;
         this.H = 100; // max HP
         this.i = this.H; // HP
 
@@ -79,8 +81,15 @@ var _ = (function () {
                 //u.x += u.a;
                 //u.y += u.b;
 
+                // move by heading and speed
                 u.x += Math.cos(u.a) * u.b;
                 u.y += Math.sin(u.a) * u.b;
+
+                if (u.l != undefined) {
+
+                    u.l -= 1;
+
+                }
 
             });
 
@@ -110,16 +119,24 @@ var _ = (function () {
     // shoot
     V.prototype.shoot = function () {
 
-        var s = new S({
+        var now = new Date();
 
-                x : this.x,
-                y : this.y,
-                a : this.a,
-                b : 2
+        if (now - this.lf >= this.fr) {
 
-            });
+            var s = new S({
 
-        a.s.u.push(s);
+                    x : this.x,
+                    y : this.y,
+                    a : this.a,
+                    b : 2
+
+                });
+
+            a.s.u.push(s);
+
+            this.lf = new Date();
+
+        }
 
     };
 
