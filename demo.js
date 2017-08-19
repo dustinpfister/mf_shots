@@ -53,6 +53,13 @@ _.a({
         _.s.u.forEach(function (u) {
 
             ctx.fillStyle = u.n === 'p' ? '#00ff00' : '#ff0000';
+
+            if (u.l != undefined) {
+
+                ctx.fillStyle = '#ffffff';
+
+            }
+
             ctx.fillRect(u.x, u.y, u.w, u.h);
 
         });
@@ -103,6 +110,12 @@ _.a({
         if (keys[68]) {
 
             player.a -= Math.PI / 50;
+
+        }
+
+        if (keys[32]) {
+
+            player.shoot();
 
         }
 

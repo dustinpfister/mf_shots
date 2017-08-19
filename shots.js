@@ -6,6 +6,8 @@ var _ = (function () {
     var U = function (o) {
 
         o = o || {};
+		
+        this.n = o.n || 'p'; // n if for owner
         this.x = o.x || 0; // x pos
         this.y = o.y || 0; // y pos
 
@@ -34,10 +36,8 @@ var _ = (function () {
 
         U.call(this, o);
 
-        this.n = o.n || 'p'; // n if for owner
         this.H = 100; // max HP
         this.i = this.H; // HP
-        this.shots = [];
 
     };
 
@@ -106,6 +106,22 @@ var _ = (function () {
     S.prototype = new U();
 
     V.prototype = new U();
+
+    // shoot
+    V.prototype.shoot = function () {
+
+        var s = new S({
+
+                x : this.x,
+                y : this.y,
+                a : this.a,
+                b : 2
+
+            });
+
+        a.s.u.push(s);
+
+    };
 
     return a;
 
