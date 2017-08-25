@@ -1,6 +1,8 @@
 # mf_shots
 
-This is a micro framework for simple space shooter type games that takes up less than 2KB
+This is a micro framework for simple space shooter type games that takes up less than 2KB. This framework by itself has to do with Units. There are Vessel, Shot, and Base Unit Classes used, and all Unit Classes inherit from the Base Unit class.
+
+So this framework just has to do with the position of display objects that can be a space ship, a shot from a weapon, or just a basic Unit of some kind. Any method that is part of the Base Unit class is shared with all other unit classes, and Unit classes like Shot have there own special methods (prototype inheritance).
 
 ## simple demo
 
